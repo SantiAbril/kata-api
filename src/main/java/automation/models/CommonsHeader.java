@@ -5,9 +5,9 @@ import java.util.Map;
 import automation.models.headers.Header;
 
 
-public class PutHeader {
+public class CommonsHeader {
 
-    private PutHeader(){}
+    private CommonsHeader(){}
 
     public static final Map<String,String> headers = new HashMap<>();
 
