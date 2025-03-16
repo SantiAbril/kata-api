@@ -3,10 +3,7 @@ package automation.stepdefinitions;
 import automation.environments.Endpoint;
 import automation.questions.Schema;
 import automation.questions.StatusCode;
-import automation.task.CallingDeleteTask;
-import automation.task.CallingGetTask;
-import automation.task.CallingPostTask;
-import automation.task.CallingPutTask;
+import automation.task.*;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Dado;
 import io.cucumber.java.es.Entonces;
@@ -22,51 +19,10 @@ public class CommonsSteps {
     }
 
     @Cuando("realiza una solicitud {string} al recurso {string}")
-    public void realizaUnaSolicitudAlRecurso(String metodo,String resources){
-        switch (resources) {
-            case "successful get all carts":
-                COMMON_ACTOR.attemptsTo(
-                        CallingGetTask.service(Endpoint.CARTS,resources)
-                );
-                break;
-            case "failed get all carts":
-                COMMON_ACTOR.attemptsTo(
-                        CallingGetTask.service(Endpoint.CARTS_ERROR,resources)
-                );
-                break;
-            case "successful add a new cart":
-                COMMON_ACTOR.attemptsTo(
-                        CallingPostTask.service(Endpoint.CARTS,resources)
-                );
-                break;
-            case "failed add a new cart":
-                COMMON_ACTOR.attemptsTo(
-                        CallingPostTask.service(Endpoint.CARTS,resources)
-                );
-                break;
-            case "successful update a cart":
-                COMMON_ACTOR.attemptsTo(
-                        CallingPutTask.service(Endpoint.CARTS_PUT,resources)
-                );
-                break;
-            case "failed update a cart":
-                COMMON_ACTOR.attemptsTo(
-                        CallingPutTask.service(Endpoint.CARTS_ERROR,resources)
-                );
-                break;
-            case "sucessful delete a cart":
-                COMMON_ACTOR.attemptsTo(
-                        CallingDeleteTask.service(Endpoint.CARTS_PUT,resources)
-                );
-                break;
-            case "failed delete a cart":
-                COMMON_ACTOR.attemptsTo(
-                        CallingDeleteTask.service(Endpoint.CARTS_ERROR,resources)
-                );
-                break;
-            default:
-                throw new IllegalArgumentException("El valor " + resources + " no coincide con ninguno de los case definidos.");
-        }
+    public void realizaUnaSolicitudAlRecurso(String methods,String resources){
+        COMMON_ACTOR.attemptsTo(
+                CalledTask.service(resources)
+        );
     }
 
     @Entonces("la respuesta debe tener un código de estado HTTP {int}")

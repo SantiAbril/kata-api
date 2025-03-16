@@ -6,6 +6,7 @@ import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
 import net.thucydides.core.util.EnvironmentVariables;
 
+
 import static automation.utils.Constant.COMMON_ACTOR;
 
 public class PreliminarySteps {
