@@ -19,7 +19,9 @@
         | POST   | successful add a new cart | 200  | successful_post          |
         | POST   | failed add a new cart     | 400  | shopping_cart_failed     |
         | PUT    | successful update a cart  | 200  | successful_post          |
-        | PUT    | failed update a cart      | 400  | shopping_cart_failed       |
+        | PUT    | failed update a cart      | 400  | shopping_cart_failed     |
+        | DELETE | sucessful delete a cart   | 200  | delete_schema            |
+        | DELETE | failed delete a cart      | 400  | shopping_cart_failed       |
 
 
 

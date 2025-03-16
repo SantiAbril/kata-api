@@ -3,6 +3,7 @@ package automation.stepdefinitions;
 import automation.environments.Endpoint;
 import automation.questions.Schema;
 import automation.questions.StatusCode;
+import automation.task.CallingDeleteTask;
 import automation.task.CallingGetTask;
 import automation.task.CallingPostTask;
 import automation.task.CallingPutTask;
@@ -51,6 +52,16 @@ public class CommonsSteps {
             case "failed update a cart":
                 COMMON_ACTOR.attemptsTo(
                         CallingPutTask.service(Endpoint.CARTS_ERROR,resources)
+                );
+                break;
+            case "sucessful delete a cart":
+                COMMON_ACTOR.attemptsTo(
+                        CallingDeleteTask.service(Endpoint.CARTS_PUT,resources)
+                );
+                break;
+            case "failed delete a cart":
+                COMMON_ACTOR.attemptsTo(
+                        CallingDeleteTask.service(Endpoint.CARTS_ERROR,resources)
                 );
                 break;
             default:
