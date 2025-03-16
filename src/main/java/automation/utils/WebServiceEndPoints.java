@@ -2,7 +2,7 @@ package automation.utils;
 
 public enum WebServiceEndPoints {
 
-    URI(Endpoint.CARTS, Endpoint.CARTS_ERROR, Endpoint.CARTS_PUT);
+    URI(Endpoint.CARTS_SUCCESS, Endpoint.CARTS_FAILED, Endpoint.CARTS_SUCCESS_PUT_DELETE);
 
     private final String url1;
     private final String url2;

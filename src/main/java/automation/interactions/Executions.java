@@ -31,24 +31,22 @@ public class Executions implements Interaction {
     public <T extends Actor> void performAs(T actor) {
         SerenityRest.reset();
         String body = null;
-
-
         try {
-            body = new String(Files.readAllBytes(Paths.get("src/test/resources/bodyPost.json")));
+            body = new String(Files.readAllBytes(Paths.get("src/test/resources/bodyPostSuccess.json")));
             body = new String(Files.readAllBytes(Paths.get("src/test/resources/bodyPostFailed.json")));
             body = new String(Files.readAllBytes(Paths.get("src/test/resources/bodyPut.json")));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String bodySuccess = body;
-        String bodyFailed = body;
+        String bodyPostSuccess = body;
+        String bodyPostFailed = body;
         String bodyPut = body;
 
 
         switch (resources) {
             case "successful get all carts":
                 actor.attemptsTo(
-                        Get.resource(Endpoint.CARTS)
+                        Get.resource(Endpoint.CARTS_SUCCESS)
                                 .with(request -> request
                                         .relaxedHTTPSValidation()
                                         .log().all()
@@ -60,7 +58,7 @@ public class Executions implements Interaction {
                 break;
             case "failed get all carts":
                 actor.attemptsTo(
-                        Get.resource(Endpoint.CARTS_ERROR)
+                        Get.resource(Endpoint.CARTS_FAILED)
                                 .with(request -> request
                                         .relaxedHTTPSValidation()
                                         .log().all()
@@ -72,10 +70,10 @@ public class Executions implements Interaction {
                 break;
             case "successful add a new cart":
                 actor.attemptsTo(
-                        Post.to(Endpoint.CARTS)
+                        Post.to(Endpoint.CARTS_SUCCESS)
                                 .with(request -> request
                                         .contentType(JSON)
-                                        .body(bodySuccess)
+                                        .body(bodyPostSuccess)
                                         .headers("accept", "application/json")
                                         .relaxedHTTPSValidation()
                                         .log().all()
@@ -87,10 +85,10 @@ public class Executions implements Interaction {
                 break;
             case "failed add a new cart":
                 actor.attemptsTo(
-                        Post.to(Endpoint.CARTS)
+                        Post.to(Endpoint.CARTS_SUCCESS)
                                 .with(request -> request
                                         .contentType(JSON)
-                                        .body(bodyFailed)
+                                        .body(bodyPostFailed)
                                         .headers("accept", "application/json")
                                         .relaxedHTTPSValidation()
                                         .log().all()
@@ -102,7 +100,7 @@ public class Executions implements Interaction {
                 break;
             case "successful update a cart":
                 actor.attemptsTo(
-                        Put.to(Endpoint.CARTS_PUT)
+                        Put.to(Endpoint.CARTS_SUCCESS_PUT_DELETE)
                                 .with(request -> request
                                         .headers(PutHeader.basicHeaders())
                                         .body(bodyPut)
@@ -113,9 +111,10 @@ public class Executions implements Interaction {
                 if (SerenityRest.lastResponse().statusCode() != HttpStatus.SC_OK) {
                     throw new ErrorServicesException(EXCEPTION_ERROR_CONSUMPTION_SERVICE);
                 }
-                break;case "failed update a cart":
+                break;
+            case "failed update a cart":
                 actor.attemptsTo(
-                        Put.to(Endpoint.CARTS_ERROR)
+                        Put.to(Endpoint.CARTS_FAILED)
                                 .with(request -> request
                                         .headers(PutHeader.basicHeaders())
                                         .body(bodyPut)
@@ -129,7 +128,7 @@ public class Executions implements Interaction {
                 break;
             case "sucessful delete a cart":
                 actor.attemptsTo(
-                        Delete.from(Endpoint.CARTS_PUT)
+                        Delete.from(Endpoint.CARTS_SUCCESS_PUT_DELETE)
                                 .with(request -> request
                                         .relaxedHTTPSValidation()
                                         .log().all()
@@ -141,7 +140,7 @@ public class Executions implements Interaction {
                 break;
             case "failed delete a cart":
                 actor.attemptsTo(
-                        Delete.from(Endpoint.CARTS_ERROR)
+                        Delete.from(Endpoint.CARTS_FAILED)
                                 .with(request -> request
                                         .relaxedHTTPSValidation()
                                         .log().all()

@@ -9,7 +9,7 @@ public class Endpoint {
     }
 
 
-    public static final String CARTS = "carts";
-    public static final String CARTS_ERROR = "carts/xyz";
-    public static final String CARTS_PUT = "carts/1";
+    public static final String CARTS_SUCCESS = "carts";
+    public static final String CARTS_FAILED = "carts/xyz";
+    public static final String CARTS_SUCCESS_PUT_DELETE = "carts/1";
 }
