@@ -56,9 +56,9 @@ jobs:
       - name: Generate reports
         run: gradle reports
 
-      - name: Upload test reports as artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: test-reports
-          path: build/reports  # Cambia esta ruta si tus reportes están en otro directorio
-          retention-days: 2  # Establece que el artefacto se mantenga por 2 días
+      - name: List contents of build/reports directory
+        run: ls -R build/reports
+
+      - name: Check connectivity to GitHub
+        run: curl -v https://github.com/actions/upload-artifact/releases/latest
+
