@@ -12,9 +12,9 @@ import io.cucumber.java.es.Y;
 import static automation.utils.Constant.COMMON_ACTOR;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 
-public class CommonGetStep {
-    @Dado("que el usuario quiere consultar los carritos disponibles")
-    public void queElUsuarioQuiereConsultarLosCarritosDisponibles() {
+public class CommonsSteps {
+    @Dado("que el usuario desea consumir los métodos de la API")
+    public void queElUsuarioDeseaConsumirLosMétodosDelaAPI() {
         COMMON_ACTOR.describedAs("Envia la solicitud GET");
     }
 
@@ -34,7 +34,8 @@ public class CommonGetStep {
             default:
                 throw new IllegalArgumentException("El valor " + resources + " no coincide con ninguno de los case definidos.");
         }
-    }    
+    }
+
     @Entonces("la respuesta debe tener un código de estado HTTP {int}")
     public void laRespuestaDebeTenerUnCodigoDeEstadoHTTP(int responseCode){
         COMMON_ACTOR
