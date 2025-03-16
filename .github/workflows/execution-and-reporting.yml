@@ -1,0 +1,60 @@
+name: test-execution-and-reporting
+
+on:
+  push:
+    branches:
+      - master
+      - feature/*
+
+  workflow_dispatch:
+    inputs:
+      execution:
+        description: "Seleciona la razón de ejecución del pipeline"
+        required: true
+        type: choice
+        options:
+          - Falla en API get
+          - Falla en API post
+          - Falla en API put
+          - Falla en API delete
+          - Beta
+      enviroment:
+        description: "Seleccione el ambiente"
+        required: true
+        type: choice
+        options:
+          - Desarrollo
+          - Staging
+          - Produccion
+      version:
+        description: "Si seleccionaste 'Beta', indica la versión"
+        required: false
+  schedule:
+    - cron: "0 9 * * Mon"
+
+jobs:
+  execution:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up java and gradle
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Clean and prepare enviroment
+        run: gradle clean clearReports
+
+      - name: Run serenity test
+        run: gradle test
+        continue-on-error: true
+
+      - name: Generate reports
+        run: gradle reports
+
+
+
