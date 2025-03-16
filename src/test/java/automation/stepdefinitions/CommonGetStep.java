@@ -32,7 +32,7 @@ public class CommonGetStep {
                 );
                 break;
             default:
-                throw new IllegalArgumentException("El valor " + resources + "no coincide con ninguno de los case definidos.");
+                throw new IllegalArgumentException("El valor " + resources + " no coincide con ninguno de los case definidos.");
         }
     }
 

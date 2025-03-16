@@ -41,7 +41,7 @@ public class ExecuteGet implements Interaction {
                 }
                 break;
             default:
-                throw new IllegalArgumentException("Recurso no reconocido: " + resources);
+                throw new IllegalArgumentException("El valor " + resources + "no coincide con ninguno de los case definidos.");
         }
     }
 

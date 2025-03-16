@@ -16,26 +16,12 @@ public class StatusCode implements Question<Boolean> {
 
     @Override
     public Boolean answeredBy(Actor actor) {
-        switch (code){
-            case 200:
-                actor.should(
-                        seeThatResponse(VALIDATION_STATUS_CODE_200,
-                                response -> response
-                                        .statusCode(code)
-                        )
-                );
-                break;
-            case 400 :
-                actor.should(
-                        seeThatResponse(VALIDATION_STATUS_CODE_400,
-                                response -> response
-                                        .statusCode(code)
-                        )
-                );
-                break;
-            default:
-                throw new IllegalArgumentException("Codigo no reconocido: " + code);
-        }
+        actor.should(
+                seeThatResponse(VALIDATION_STATUS_CODE,
+                        response -> response
+                                .statusCode(code)
+                )
+        );
         return true;
     }
 
