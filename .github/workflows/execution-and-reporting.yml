@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       execution:
-        description: "Seleciona la razón de ejecución del pipeline"
+        description: "Selecciona la razón de ejecución del pipeline"
         required: true
         type: choice
         options:
@@ -18,14 +18,14 @@ on:
           - Falla en API put
           - Falla en API delete
           - Beta
-      enviroment:
+      environment:
         description: "Seleccione el ambiente"
         required: true
         type: choice
         options:
           - Desarrollo
           - Staging
-          - Produccion
+          - Producción
       version:
         description: "Si seleccionaste 'Beta', indica la versión"
         required: false
@@ -46,7 +46,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Clean and prepare enviroment
+      - name: Clean and prepare environment
         run: gradle clean clearReports
 
       - name: Run serenity test
@@ -56,5 +56,10 @@ jobs:
       - name: Generate reports
         run: gradle reports
 
-
+      - name: Upload test reports as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: target/site/serenity/serenity-summary.html
+          retention-days: 2
 
