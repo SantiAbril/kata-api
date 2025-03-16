@@ -18,7 +18,7 @@ public class Schema implements Question <Boolean>{
     @Override
     public Boolean answeredBy(Actor actor) {
         actor.should(
-              seeThatResponse("Validation schema service response",
+              seeThatResponse("Respuesta del servicio de esquema de validación",
                       response -> response
                               .assertThat()
                               .body(matchesJsonSchemaInClasspath("templates/"+ structure + ".json"))
@@ -26,7 +26,7 @@ public class Schema implements Question <Boolean>{
         );
         return true;
     }
-    public static Schema esperado (String schemaResponse){
+    public static Schema expected(String schemaResponse){
         return new Schema(schemaResponse);
     }
 }

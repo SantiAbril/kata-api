@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"summary"},
         snippets = CucumberOptions.SnippetType.CAMELCASE,
-        tags = "@Get",
+        tags = "@Carts",
         features = "src/test/resources/features/",
         glue = {"automation/stepdefinitions/Hooks","automation/stepdefinitions"}
 

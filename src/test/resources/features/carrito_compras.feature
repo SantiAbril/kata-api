@@ -1,6 +1,6 @@
 # language:es
 
-  @Get
+  @Carts
 
   Característica: Consumo de métodos de carritos de compra
 
@@ -13,15 +13,15 @@
       Y validar el cuerpo de la respuesta "<schema>"
 
       Ejemplos:
-        | method | responses                 | code | schema                   |
-        | GET    | successful get all carts  | 200  | successful_shopping_cart |
-        | GET    | failed get all carts      | 400  | shopping_cart_failed     |
-        | POST   | successful add a new cart | 200  | successful_post          |
-        | POST   | failed add a new cart     | 400  | shopping_cart_failed     |
-        | PUT    | successful update a cart  | 200  | successful_post          |
-        | PUT    | failed update a cart      | 400  | shopping_cart_failed     |
-        | DELETE | sucessful delete a cart   | 200  | delete_schema            |
-        | DELETE | failed delete a cart      | 400  | shopping_cart_failed       |
+        | method | responses                 | code | schema                          |
+        | GET    | successful get all carts  | 200  | success                         |
+        | GET    | failed get all carts      | 400  | bad_request                     |
+        | POST   | successful add a new cart | 200  | cart_created_or_updated_success |
+        | POST   | failed add a new cart     | 400  | bad_request                     |
+        | PUT    | successful update a cart  | 200  | cart_created_or_updated_success |
+        | PUT    | failed update a cart      | 400  | bad_request                     |
+        | DELETE | sucessful delete a cart   | 200  | cart_deleted_successfully       |
+        | DELETE | failed delete a cart      | 400  | bad_request                     |
 
 
 

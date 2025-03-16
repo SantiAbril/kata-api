@@ -78,7 +78,7 @@ public class CommonsSteps {
     @Y("validar el cuerpo de la respuesta {string}")
     public void validarElCuerpoDeLaRespuesta(String bodyResponse){
         COMMON_ACTOR
-                .should(seeThat(Schema.esperado(bodyResponse)));
+                .should(seeThat(Schema.expected(bodyResponse)));
     }
 }
 
