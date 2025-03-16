@@ -7,12 +7,15 @@
     Antecedentes:
       Dado que el usuario quiere consultar los carritos disponibles
 
-    Escenario: Consulta exitosa de carritos disponibles
-      Cuando realiza una solicitud GET al recurso correspondiente
-      Entonces la respuesta debe tener un código de estado HTTP 200
-      Y el cuerpo de la respuesta debe contener la lista de carritos
+    Esquema del escenario: Consulta de carritos disponibles
+      Cuando realiza una solicitud GET al recurso "<responses>"
+      Entonces la respuesta debe tener un código de estado HTTP <code>
+      Y validar el cuerpo de la respuesta "<schema>"
 
-    Escenario: Consulta fallida debido a una solicitud incorrecta
-      Cuando se envía la solicitud con parámetros incorrectos
-      Entonces la respuesta debe tener un código de estado HTTP 400
-      Y el cuerpo de la respuesta debe contener un mensaje de error adecuado
+      Ejemplos:
+        | responses  | code | schema                   |
+        | successful | 200  | successful_shopping_cart |
+        | failed     | 400  | shopping_cart_failed     |
+
+
+
