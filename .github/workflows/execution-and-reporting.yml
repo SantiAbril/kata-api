@@ -55,7 +55,7 @@ jobs:
         run: gradle test
 
       - name: Generate reports
-        run: gradle clean clearReports
+        run: gradle reports
 
 
 
