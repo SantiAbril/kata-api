@@ -18,8 +18,8 @@ public class CommonGetStep {
         COMMON_ACTOR.describedAs("Envia la solicitud GET");
     }
 
-    @Cuando("realiza una solicitud GET al recurso {string}")
-    public void realizaUnaSolicitudGETAlRecurso(String resources){
+    @Cuando("realiza una solicitud {string} al recurso {string}")
+    public void realizaUnaSolicitudGETAlRecurso(String metodo,String resources){
         switch (resources) {
             case "successful":
                 COMMON_ACTOR.attemptsTo(
@@ -34,8 +34,7 @@ public class CommonGetStep {
             default:
                 throw new IllegalArgumentException("El valor " + resources + " no coincide con ninguno de los case definidos.");
         }
-    }
-
+    }    
     @Entonces("la respuesta debe tener un código de estado HTTP {int}")
     public void laRespuestaDebeTenerUnCodigoDeEstadoHTTP(int responseCode){
         COMMON_ACTOR
