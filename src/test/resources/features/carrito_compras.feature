@@ -18,6 +18,8 @@
         | GET    | failed get all carts      | 400  | shopping_cart_failed     |
         | POST   | successful add a new cart | 200  | successful_post          |
         | POST   | failed add a new cart     | 400  | shopping_cart_failed     |
+        | PUT    | successful update a cart  | 200  | successful_post          |
+        | PUT    | failed update a cart      | 400  | shopping_cart_failed       |
 
 
 

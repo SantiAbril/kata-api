@@ -5,6 +5,7 @@ import automation.questions.Schema;
 import automation.questions.StatusCode;
 import automation.task.CallingGetTask;
 import automation.task.CallingPostTask;
+import automation.task.CallingPutTask;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Dado;
 import io.cucumber.java.es.Entonces;
@@ -40,6 +41,16 @@ public class CommonsSteps {
             case "failed add a new cart":
                 COMMON_ACTOR.attemptsTo(
                         CallingPostTask.service(Endpoint.CARTS,resources)
+                );
+                break;
+            case "successful update a cart":
+                COMMON_ACTOR.attemptsTo(
+                        CallingPutTask.service(Endpoint.CARTS_PUT,resources)
+                );
+                break;
+            case "failed update a cart":
+                COMMON_ACTOR.attemptsTo(
+                        CallingPutTask.service(Endpoint.CARTS_ERROR,resources)
                 );
                 break;
             default:

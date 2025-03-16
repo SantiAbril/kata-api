@@ -5,7 +5,6 @@ import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.Tasks;
-import net.serenitybdd.screenplay.rest.interactions.Get;
 import net.serenitybdd.screenplay.rest.interactions.Post;
 import org.apache.http.HttpStatus;
 
@@ -29,24 +28,19 @@ public class ExecutePost implements Interaction {
     public <T extends Actor> void performAs(T actor) {
         SerenityRest.reset();
         String body = null;
-
-
         switch (resources) {
             case "successful add a new cart":
                 try {
-                    // Leer el archivo JSON como un String
                     body = new String(Files.readAllBytes(Paths.get("src/test/resources/bodyPost.json")));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-                // Ahora usa el cuerpo leído desde el archivo en tu solicitud POST
                 String bodySuccess = body;
                 actor.attemptsTo(
                         Post.to(resource)
                                 .with(request -> request
                                         .contentType(JSON)
-                                        .body(bodySuccess)  // Aquí es donde usas el contenido del archivo JSON
+                                        .body(bodySuccess)
                                         .headers("accept", "application/json")
                                         .relaxedHTTPSValidation()
                                         .log().all()
@@ -58,19 +52,16 @@ public class ExecutePost implements Interaction {
                 break;
             case "failed add a new cart":
                 try {
-                    // Leer el archivo JSON como un String
                     body = new String(Files.readAllBytes(Paths.get("src/test/resources/bodyPostFailed.json")));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-                // Ahora usa el cuerpo leído desde el archivo en tu solicitud POST
                 String bodyFailed = body;
                 actor.attemptsTo(
                         Post.to(resource)
                                 .with(request -> request
                                         .contentType(JSON)
-                                        .body(bodyFailed)  // Aquí es donde usas el contenido del archivo JSON
+                                        .body(bodyFailed)
                                         .headers("accept", "application/json")
                                         .relaxedHTTPSValidation()
                                         .log().all()

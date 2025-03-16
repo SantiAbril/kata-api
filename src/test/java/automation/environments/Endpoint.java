@@ -13,4 +13,5 @@ public class Endpoint {
 
     public static final String CARTS = setEndpoint("carts");
     public static final String CARTS_ERROR = setEndpoint("carts_error");
+    public static final String CARTS_PUT = setEndpoint("carts_put");
 }
