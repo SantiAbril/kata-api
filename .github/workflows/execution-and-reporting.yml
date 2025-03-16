@@ -5,8 +5,7 @@ on:
     branches:
       - master
       - feature/*
-  schedule:
-    - cron: "0 9 * * Mon"
+
   workflow_dispatch:
     inputs:
       execution:
@@ -30,6 +29,31 @@ on:
       version:
         description: "Si seleccionaste 'Beta', indica la versión"
         required: false
+  schedule:
+    - cron: "0 9 * * Mon"
+
+jobs:
+  execution:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up java and gradle
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Clean and prepare enviroment
+        run: gradle clean clearReports
+
+      - name: Run serenity test
+        run: gradle test --test ApiRunners
+
+      - name: Generate reports
+        run: gradle reports
 
 
 
