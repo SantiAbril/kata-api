@@ -1,7 +1,7 @@
 package automation.interactions;
 
 import automation.exceptions.ErrorServicesException;
-import automation.models.PutHeader;
+import automation.models.CommonsHeader;
 import automation.utils.environments.Endpoint;
 import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
@@ -12,19 +12,26 @@ import net.serenitybdd.screenplay.rest.interactions.Get;
 import net.serenitybdd.screenplay.rest.interactions.Post;
 import net.serenitybdd.screenplay.rest.interactions.Put;
 import org.apache.http.HttpStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static automation.exceptions.ErrorServicesException.EXCEPTION_ERROR_CONSUMPTION_SERVICE;
-import static io.restassured.http.ContentType.JSON;
 
 public class Executions implements Interaction {
     private final String resources;
+    private static final Logger logger = LoggerFactory.getLogger(Executions.class);
+
 
     public Executions(String resources) {
         this.resources = resources;
+    }
+
+    private void logResponse() {
+        logger.info("Response: {}", SerenityRest.lastResponse().getBody().asString());
     }
 
     @Override
@@ -52,6 +59,7 @@ public class Executions implements Interaction {
                                         .log().all()
                                 )
                 );
+                logResponse();
                 if (SerenityRest.lastResponse().statusCode() != HttpStatus.SC_OK) {
                     throw new ErrorServicesException(EXCEPTION_ERROR_CONSUMPTION_SERVICE);
                 }
@@ -64,6 +72,7 @@ public class Executions implements Interaction {
                                         .log().all()
                                 )
                 );
+                logResponse();
                 if (SerenityRest.lastResponse().statusCode() != HttpStatus.SC_BAD_REQUEST) {
                     throw new ErrorServicesException(EXCEPTION_ERROR_CONSUMPTION_SERVICE);
                 }
@@ -72,13 +81,13 @@ public class Executions implements Interaction {
                 actor.attemptsTo(
                         Post.to(Endpoint.CARTS_SUCCESS)
                                 .with(request -> request
-                                        .contentType(JSON)
+                                        .headers(CommonsHeader.basicHeaders())
                                         .body(bodyPostSuccess)
-                                        .headers("accept", "application/json")
                                         .relaxedHTTPSValidation()
                                         .log().all()
                                 )
                 );
+                logResponse();
                 if (SerenityRest.lastResponse().statusCode() != HttpStatus.SC_OK) {
                     throw new ErrorServicesException(EXCEPTION_ERROR_CONSUMPTION_SERVICE);
                 }
@@ -87,13 +96,13 @@ public class Executions implements Interaction {
                 actor.attemptsTo(
                         Post.to(Endpoint.CARTS_SUCCESS)
                                 .with(request -> request
-                                        .contentType(JSON)
+                                        .headers(CommonsHeader.basicHeaders())
                                         .body(bodyPostFailed)
-                                        .headers("accept", "application/json")
                                         .relaxedHTTPSValidation()
                                         .log().all()
                                 )
                 );
+                logResponse();
                 if (SerenityRest.lastResponse().statusCode() != HttpStatus.SC_BAD_REQUEST) {
                     throw new ErrorServicesException(EXCEPTION_ERROR_CONSUMPTION_SERVICE);
                 }
@@ -102,12 +111,13 @@ public class Executions implements Interaction {
                 actor.attemptsTo(
                         Put.to(Endpoint.CARTS_SUCCESS_PUT_DELETE)
                                 .with(request -> request
-                                        .headers(PutHeader.basicHeaders())
+                                        .headers(CommonsHeader.basicHeaders())
                                         .body(bodyPut)
                                         .relaxedHTTPSValidation()
                                         .log().all()
                                 )
                 );
+                logResponse();
                 if (SerenityRest.lastResponse().statusCode() != HttpStatus.SC_OK) {
                     throw new ErrorServicesException(EXCEPTION_ERROR_CONSUMPTION_SERVICE);
                 }
@@ -116,12 +126,13 @@ public class Executions implements Interaction {
                 actor.attemptsTo(
                         Put.to(Endpoint.CARTS_FAILED)
                                 .with(request -> request
-                                        .headers(PutHeader.basicHeaders())
+                                        .headers(CommonsHeader.basicHeaders())
                                         .body(bodyPut)
                                         .relaxedHTTPSValidation()
                                         .log().all()
                                 )
                 );
+                logResponse();
                 if (SerenityRest.lastResponse().statusCode() != HttpStatus.SC_BAD_REQUEST) {
                     throw new ErrorServicesException(EXCEPTION_ERROR_CONSUMPTION_SERVICE);
                 }
@@ -134,6 +145,7 @@ public class Executions implements Interaction {
                                         .log().all()
                                 )
                 );
+                logResponse();
                 if (SerenityRest.lastResponse().statusCode() != HttpStatus.SC_OK) {
                     throw new ErrorServicesException(EXCEPTION_ERROR_CONSUMPTION_SERVICE);
                 }
@@ -146,6 +158,7 @@ public class Executions implements Interaction {
                                         .log().all()
                                 )
                 );
+                logResponse();
                 if (SerenityRest.lastResponse().statusCode() != HttpStatus.SC_BAD_REQUEST) {
                     throw new ErrorServicesException(EXCEPTION_ERROR_CONSUMPTION_SERVICE);
                 }
