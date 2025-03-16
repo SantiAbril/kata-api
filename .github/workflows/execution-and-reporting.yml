@@ -62,3 +62,10 @@ jobs:
       - name: Check connectivity to GitHub
         run: curl -v https://github.com/actions/upload-artifact/releases/latest
 
+      - name: Upload test reports as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: build/reports  # Asegúrate de que esta ruta sea correcta para tus reportes
+          retention-days: 2
+
