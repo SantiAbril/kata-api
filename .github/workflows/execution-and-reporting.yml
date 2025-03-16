@@ -56,5 +56,12 @@ jobs:
       - name: Generate reports
         run: gradle reports
 
+      - name: Upload test reports as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: target/site/serenity/serenity-summary.html
+          retention-days: 2
+
 
 
