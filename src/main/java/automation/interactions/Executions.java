@@ -2,7 +2,7 @@ package automation.interactions;
 
 import automation.exceptions.ErrorServicesException;
 import automation.models.PutHeader;
-import automation.utils.Endpoint;
+import automation.utils.environments.Endpoint;
 import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
