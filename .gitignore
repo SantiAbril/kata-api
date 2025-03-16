@@ -1,16 +1,22 @@
-
 ### Compile output ###
 target/
 !target/cucumber/failed_scenarios.txt
 !target/site/serenity/serenity-summary.html
 !target/site/serenity/results.csv
 test-integration.txt
+/target/
+/target
+target/*
+/test-output/
+/test-output
 
-### Enviroment variables ###
+### Environment variables ###
 .env
+local.properties
 
 ### Maven or Gradle ###
 .gradle
+/.gradle
 build
 history
 pom.xml.tag
@@ -29,6 +35,7 @@ buildNumber.properties
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+/.idea
 .settings/
 *.iws
 *.iml
@@ -52,6 +59,7 @@ buildNumber.properties
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
+.serenity.conf
 
 ### VS Code ###
 .vscode/
@@ -61,3 +69,22 @@ build/
 
 ### Sonar ###
 out/
+
+### Package Files ###
+*.jar
+*.war
+*.nar
+*.ear
+*.tar.gz
+*.rar
+*.class
+*.html
+*.csv
+*.log
+
+### Others ###
+checkstyle-suppressions.xml
+sun_checks.xml
+*.DS_Store
+.gitignore
+LICENSE
