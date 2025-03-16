@@ -1,6 +1,5 @@
 package automation.stepdefinitions;
 
-import automation.environments.Endpoint;
 import automation.questions.Schema;
 import automation.questions.StatusCode;
 import automation.task.*;

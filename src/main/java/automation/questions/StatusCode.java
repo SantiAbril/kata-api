@@ -3,7 +3,7 @@ package automation.questions;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
 
-import static automation.utils.Constant.*;
+import static automation.exceptions.AssertionsServices.VALIDATION_STATUS_CODE;
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
 
 public class StatusCode implements Question<Boolean> {

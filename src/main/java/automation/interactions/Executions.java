@@ -2,7 +2,7 @@ package automation.interactions;
 
 import automation.exceptions.ErrorServicesException;
 import automation.models.PutHeader;
-import automation.utils.Endpoint;
+import automation.utils.environments.Endpoint;
 import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static automation.utils.Constant.EXCEPTION_ERROR_CONSUMPTION_SERVICE;
+import static automation.exceptions.ErrorServicesException.EXCEPTION_ERROR_CONSUMPTION_SERVICE;
 import static io.restassured.http.ContentType.JSON;
 
 public class Executions implements Interaction {

@@ -1,5 +1,7 @@
 package automation.utils;
 
+import automation.utils.environments.Endpoint;
+
 public enum WebServiceEndPoints {
 
     URI(Endpoint.CARTS_SUCCESS, Endpoint.CARTS_FAILED, Endpoint.CARTS_SUCCESS_PUT_DELETE);
