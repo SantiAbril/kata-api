@@ -50,7 +50,7 @@ jobs:
         run: gradle clean clearReports
 
       - name: Run serenity test
-        run: gradle test --test ApiRunners
+        run: gradle test
 
       - name: Generate reports
         run: gradle reports
