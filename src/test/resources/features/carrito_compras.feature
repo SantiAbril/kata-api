@@ -13,11 +13,11 @@
       Y validar el cuerpo de la respuesta "<schema>"
 
       Ejemplos:
-        | method | responses  | code | schema                   |
-        | GET    | successful | 200  | successful_shopping_cart |
-        | GET    | failed     | 400  | shopping_cart_failed     |
-#        | POST   | successful | 200  | successful_post          |
-#        | POST   | failed     | 400  | failed_post              |
+        | method | responses                 | code | schema                   |
+        | GET    | successful get all carts  | 200  | successful_shopping_cart |
+        | GET    | failed get all carts      | 400  | shopping_cart_failed     |
+        | POST   | successful add a new cart | 200  | successful_post          |
+        | POST   | failed add a new cart     | 400  | shopping_cart_failed     |
 
 
 

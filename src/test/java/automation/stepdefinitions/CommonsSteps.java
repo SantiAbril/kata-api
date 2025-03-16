@@ -4,6 +4,7 @@ import automation.environments.Endpoint;
 import automation.questions.Schema;
 import automation.questions.StatusCode;
 import automation.task.CallingGetTask;
+import automation.task.CallingPostTask;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Dado;
 import io.cucumber.java.es.Entonces;
@@ -15,20 +16,30 @@ import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 public class CommonsSteps {
     @Dado("que el usuario desea consumir los métodos de la API")
     public void queElUsuarioDeseaConsumirLosMétodosDelaAPI() {
-        COMMON_ACTOR.describedAs("Envia la solicitud GET");
+        COMMON_ACTOR.describedAs("Consume los metodos del API");
     }
 
     @Cuando("realiza una solicitud {string} al recurso {string}")
-    public void realizaUnaSolicitudGETAlRecurso(String metodo,String resources){
+    public void realizaUnaSolicitudAlRecurso(String metodo,String resources){
         switch (resources) {
-            case "successful":
+            case "successful get all carts":
                 COMMON_ACTOR.attemptsTo(
                         CallingGetTask.service(Endpoint.CARTS,resources)
                 );
                 break;
-            case "failed":
+            case "failed get all carts":
                 COMMON_ACTOR.attemptsTo(
                         CallingGetTask.service(Endpoint.CARTS_ERROR,resources)
+                );
+                break;
+            case "successful add a new cart":
+                COMMON_ACTOR.attemptsTo(
+                        CallingPostTask.service(Endpoint.CARTS,resources)
+                );
+                break;
+            case "failed add a new cart":
+                COMMON_ACTOR.attemptsTo(
+                        CallingPostTask.service(Endpoint.CARTS,resources)
                 );
                 break;
             default:

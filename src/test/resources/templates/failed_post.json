@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "html": {
+      "type": "string",
+      "pattern": "<html.*>.*<pre>Bad Request</pre>.*</html>"
+    }
+  },
+  "required": ["html"]
+}

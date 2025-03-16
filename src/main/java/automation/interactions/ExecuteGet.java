@@ -30,12 +30,12 @@ public class ExecuteGet implements Interaction {
                         )
         );
         switch (resources) {
-            case "successful":
+            case "successful get all carts":
                 if (SerenityRest.lastResponse().statusCode() != HttpStatus.SC_OK) {
                     throw new ErrorServicesException(EXCEPTION_ERROR_CONSUMPTION_SERVICE);
                 }
                 break;
-            case "failed":
+            case "failed get all carts":
                 if (SerenityRest.lastResponse().statusCode() != HttpStatus.SC_BAD_REQUEST) {
                     throw new ErrorServicesException(EXCEPTION_ERROR_CONSUMPTION_SERVICE);
                 }
