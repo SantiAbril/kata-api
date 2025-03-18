@@ -39,9 +39,9 @@ public class Executions implements Interaction {
         SerenityRest.reset();
         String body = null;
         try {
-            body = new String(Files.readAllBytes(Paths.get("src/test/resources/bodyPostSuccess.json")));
-            body = new String(Files.readAllBytes(Paths.get("src/test/resources/bodyPostFailed.json")));
-            body = new String(Files.readAllBytes(Paths.get("src/test/resources/bodyPut.json")));
+            body = new String(Files.readAllBytes(Paths.get("src/test/resources/templates/bodyPostSuccess.json")));
+            body = new String(Files.readAllBytes(Paths.get("src/test/resources/templates/bodyPostFailed.json")));
+            body = new String(Files.readAllBytes(Paths.get("src/test/resources/templates/bodyPut.json")));
         } catch (IOException e) {
             e.printStackTrace();
         }
