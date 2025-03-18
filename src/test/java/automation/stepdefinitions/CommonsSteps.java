@@ -17,8 +17,8 @@ public class CommonsSteps {
         COMMON_ACTOR.describedAs("Consume los metodos del API");
     }
 
-    @Cuando("realiza una solicitud {string} al recurso {string}")
-    public void realizaUnaSolicitudAlRecurso(String methods,String resources){
+    @Cuando("realiza una solicitud al recurso {string}")
+    public void realizaUnaSolicitudAlRecurso(String resources){
         COMMON_ACTOR.attemptsTo(
                 CalledTask.service(resources)
         );

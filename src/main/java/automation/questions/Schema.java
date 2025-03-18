@@ -21,7 +21,7 @@ public class Schema implements Question <Boolean>{
               seeThatResponse("Respuesta del servicio de esquema de validación",
                       response -> response
                               .assertThat()
-                              .body(matchesJsonSchemaInClasspath("templates/"+ structure + ".json"))
+                              .body(matchesJsonSchemaInClasspath("schema/"+ structure + ".json"))
               )
         );
         return true;
